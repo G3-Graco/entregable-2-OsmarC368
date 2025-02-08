@@ -17,11 +17,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
-builder.Services.AddScoped(typeof(IPersonajeService), typeof(PersonajeService));
-builder.Services.AddScoped(typeof(IHabilidadService), typeof(HabilidadService));
-builder.Services.AddScoped(typeof(IPersonajeRepository), typeof(PersonajeRepository));
-builder.Services.AddScoped(typeof(IHabilidadRepository), typeof(HabilidadRepository));
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IPersonajeService), typeof(PersonajeService));
+builder.Services.AddScoped(typeof(IPersonajeRepository), typeof(PersonajeRepository));
+builder.Services.AddScoped(typeof(IHabilidadService), typeof(HabilidadService));
+builder.Services.AddScoped(typeof(IHabilidadRepository), typeof(HabilidadRepository));
+builder.Services.AddScoped(typeof(IEquipoService), typeof(EquipoService));
+builder.Services.AddScoped(typeof(IEquipoRepository), typeof(EquipoRepository));
 
 builder.Services.AddDbContext<AppDbContext>(patata =>
         patata.UseNpgsql("Host=dpg-cu8lfdhu0jms738cjl4g-a;Server=dpg-cu8lfdhu0jms738cjl4g-a.oregon-postgres.render.com;Port=5432;Database=netcore2025graco;Username=netcore2025graco_user;Password=poip27oYyj7iu9y7oxpkXezLliJrsyIh",

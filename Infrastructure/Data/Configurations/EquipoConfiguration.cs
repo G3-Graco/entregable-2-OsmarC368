@@ -19,7 +19,10 @@ namespace Infrastructure.Data.Configurations
             builder.Property(x => x.arma1).IsRequired().HasMaxLength(255); 
             builder.Property(x => x.arma2).IsRequired().HasMaxLength(255); 
             builder.Property(x => x.guanteletes).IsRequired().HasMaxLength(255); 
-            builder.Property(x => x.grebas).IsRequired().HasMaxLength(255); 
+            builder.Property(x => x.grebas).IsRequired().HasMaxLength(255);
+
+            //builder.HasMany(h=> h.personajes).WithMany(per => per.equipo);
+
             builder.ToTable("Equipo");
         }
     }

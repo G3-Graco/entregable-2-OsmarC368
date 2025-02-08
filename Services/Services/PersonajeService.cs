@@ -178,6 +178,9 @@ namespace Services.Services
             if (PersonajeToBeUpdated == null)
                 throw new ArgumentException("Invalid Personaje ID while updating");
 
+            if (habilidad == null)
+                throw new ArgumentException("ID de Habilidad Invalido");
+
 
             if (PersonajeToBeUpdated.habilidades.Where(Hab => Hab.id == idHabilidad).ToList().Count > 0)
                 throw new ArgumentException("No se puede aprender la misma habilidad dos veces");

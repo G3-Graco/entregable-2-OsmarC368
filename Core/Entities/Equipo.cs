@@ -15,5 +15,6 @@ namespace Core.Entities
         public string arma2 { get; set; } = string.Empty;
         public string guanteletes { get; set; } = string.Empty;
         public string grebas { get; set; } = string.Empty;
+        //public List<Personaje> personajes { get; set; } = [];
     }
 }

@@ -19,6 +19,7 @@ namespace Web.Crontrollers
             _servicio = personajeService;
         }
 
+        //
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Personaje>>> Get()
         {
