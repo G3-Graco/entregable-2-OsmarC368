@@ -24,6 +24,8 @@ builder.Services.AddScoped(typeof(IHabilidadService), typeof(HabilidadService));
 builder.Services.AddScoped(typeof(IHabilidadRepository), typeof(HabilidadRepository));
 builder.Services.AddScoped(typeof(IEquipoService), typeof(EquipoService));
 builder.Services.AddScoped(typeof(IEquipoRepository), typeof(EquipoRepository));
+builder.Services.AddScoped(typeof(IMisionService), typeof(MisionService));
+builder.Services.AddScoped(typeof(IMisionRepository), typeof(MisionRepository));
 
 builder.Services.AddDbContext<AppDbContext>(patata =>
         patata.UseNpgsql("Host=dpg-cu8lfdhu0jms738cjl4g-a;Server=dpg-cu8lfdhu0jms738cjl4g-a.oregon-postgres.render.com;Port=5432;Database=netcore2025graco;Username=netcore2025graco_user;Password=poip27oYyj7iu9y7oxpkXezLliJrsyIh",
