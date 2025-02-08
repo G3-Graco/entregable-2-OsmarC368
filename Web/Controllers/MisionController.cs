@@ -10,30 +10,30 @@ namespace Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EquipoController : ControllerBase
+    public class MisionController : ControllerBase
     {
-        private IEquipoService _servicio;
+        private IMisionService _servicio;
 
-        public EquipoController(IEquipoService equipoService)
+        public MisionController(IMisionService misionService)
         {
-            _servicio = equipoService;
+            _servicio = misionService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Equipo>>> Get()
+        public async Task<ActionResult<IEnumerable<Mision>>> Get()
         {
-            var equipos = await _servicio.GetAll();
+            var misiones = await _servicio.GetAll();
 
-            return Ok(equipos);
+            return Ok(misiones);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Equipo>> Post([FromBody] Equipo equipo)
+        public async Task<ActionResult<Mision>> Post([FromBody] Mision mision)
         {
             try
             {
-                var createdEquipo = await _servicio.Create(equipo);
-                return Ok(createdEquipo);
+                var createdMision = await _servicio.Create(mision);
+                return Ok(createdMision);
             }
             catch (Exception ex)
             {
@@ -42,12 +42,12 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Equipo>> Delete(int id)
+        public async Task<ActionResult<Mision>> Delete(int id)
         {
             try
             {
                 await _servicio.Delete(id);
-                return Ok("Equipo eliminado");
+                return Ok("Mision eliminada");
 
             }
             catch (Exception ex)
@@ -57,16 +57,16 @@ namespace Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Habilidad>> Update(int id, [FromBody] Equipo equipo)
+        public async Task<ActionResult<Mision>> Update(int id, Mision mision)
         {
             try
             {
-                await _servicio.Update(id, equipo);
-                return Ok("Equipo Actualizado!!");
+                await _servicio.Update(id, mision);
+                return Ok("Mision Actualizada");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex);
             }
         }
     }

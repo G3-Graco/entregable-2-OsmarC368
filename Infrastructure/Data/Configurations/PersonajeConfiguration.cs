@@ -23,7 +23,7 @@ namespace Infrastructure.Data.Configurations
             builder.Property(x => x.agilidad).IsRequired();
             builder.Property(x => x.nivel).IsRequired();
             //builder.Property(x => x.idTipoPersonaje).IsRequired();
-            builder.Property(x => x.equipo).IsRequired();
+            //builder.Property(x => x.equipo).IsRequired();
             builder.Property(x => x.experiencia).IsRequired();
             builder.HasMany(p => p.habilidades).WithMany(habilidad => habilidad.personajes);
             builder.HasOne(p => p.tipo).WithMany().HasForeignKey(p => p.tipoId);
