@@ -192,5 +192,23 @@ namespace Services.Services
             return PersonajeToBeUpdated;
 
         }
+
+        public async Task<string> Moverse(int idPersonaje, int idUbicacion)
+        {
+            Personaje personaje = await _unitOfWork.PersonajeRepository.GetByIdAsync(idPersonaje);
+            Ubicacion ubicacion = await _unitOfWork.UbicacionRepository.GetByIdAsync(idUbicacion);
+            var enemigos = await _unitOfWork.EnemigoRepository.GetAllAsync();
+            MoverseResponse response = new();
+
+            if (personaje == null)
+                throw new ArgumentException("Invalid Personaje ID while updating");
+
+            if (ubicacion == null)
+                throw new ArgumentException("Invalid Personaje ID while updating");
+
+            //enemigos = enemigos.Where(x => personaje.nivel < x.nivelAmenaza < personaje.nivel+5);
+            response.mensaje = $"El Personaje {personaje.nombre} se ha movido a {ubicacion.nombre}, el clima es {ubicacion.clima} y se ha encontrado con un enemigo nivel xx";
+            return $"{personaje.nombre} a llegado a {ubicacion.nombre}, conocido por su clima {ubicacion.clima} y es emboscado por un enemigo nivel xx";
+        }
     }
 }

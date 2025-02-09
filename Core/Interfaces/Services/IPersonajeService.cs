@@ -13,6 +13,7 @@ namespace Core.Services
         Task<Personaje> LevelUp(int personajeToBeUpdatedId);
         Task<AtaqueResponse> Atacar(int idEnemigo, int idPersonaje);
         Task<Personaje> AprenderHabilidad(int personajeToBeUpdatedId, int idHabilidad);
+        Task<string> Moverse(int idPersonaje, int idUbicacion);
 
     }
 }

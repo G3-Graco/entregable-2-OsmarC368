@@ -110,5 +110,21 @@ namespace Web.Crontrollers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("Moverse/{idPersonaje}/{idUbicacion}")]
+        public async Task<ActionResult<string>> Moverse(int idPersonaje, int idUbicacion)
+        {
+            try
+            {
+                var response =
+                    await _servicio.Moverse(idPersonaje, idUbicacion);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

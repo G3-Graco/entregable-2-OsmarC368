@@ -92,26 +92,64 @@ namespace Services.Services
             switch(type)
             {
                 case "casco":
+                    if (objeto.tipo != "casco")
+                        throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
                     equipoToBeUpdated.casco = idObjeto.ToString();
                     break;
                 case "armadura":
+                    if (objeto.tipo != "armadura")
+                        throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
                     equipoToBeUpdated.armadura = idObjeto.ToString();
                     break;
                 case "arma1":
+                    if (objeto.tipo != "arma1")
+                        throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
                     equipoToBeUpdated.arma1 = idObjeto.ToString();
                     break;
                 case "arma2":
+                    if (objeto.tipo != "arma2")
+                        throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
                     equipoToBeUpdated.arma2 = idObjeto.ToString();
                     break;
                 case "guanteletes":
+                    if (objeto.tipo != "guanteletes")
+                        throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
                     equipoToBeUpdated.guanteletes = idObjeto.ToString();
                     break;
                 case "grebas":
+                    if (objeto.tipo != "grebas")
+                        throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
                     equipoToBeUpdated.grebas = idObjeto.ToString();
                     break;
                 default:
                     throw new ArgumentException("Tipo de Objeto Invalido");
             }
+
+            // switch(true)
+            // {
+            //     case true when objeto.tipo == "casco":
+            //         // if (objeto.tipo != "casco")
+            //         //     throw new ArgumentException("Tipo De Objeto no Coincide con el lugar al que se quiere equipar");
+            //         equipoToBeUpdated.casco = idObjeto.ToString();
+            //         break;
+            //     case true when objeto.tipo == "armadura":
+            //         equipoToBeUpdated.armadura = idObjeto.ToString();
+            //         break;
+            //     case true when objeto.tipo == "arma1":
+            //         equipoToBeUpdated.arma1 = idObjeto.ToString();
+            //         break;
+            //     case true when objeto.tipo == "arma2":
+            //         equipoToBeUpdated.arma2 = idObjeto.ToString();
+            //         break;
+            //     case true when objeto.tipo == "guanteletes":
+            //         equipoToBeUpdated.guanteletes = idObjeto.ToString();
+            //         break;
+            //     case true when objeto.tipo == "grebas":
+            //         equipoToBeUpdated.grebas = idObjeto.ToString();
+            //         break;
+            //     default:
+            //         throw new ArgumentException("Tipo de Objeto Invalido");
+            // }
 
             await _unitOfWork.CommitAsync();
 
