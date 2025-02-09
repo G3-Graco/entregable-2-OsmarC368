@@ -78,7 +78,7 @@ namespace Services.Services
             return await _unitOfWork.EquipoRepository.GetByIdAsync(idEquipo);
         }
 
-        public async Task<Equipo> EquiparObjeto(int idObjeto, int idEquipo)
+        public async Task<Equipo> EquiparObjeto(int idObjeto, int idEquipo, string type)
         {
             Equipo equipoToBeUpdated = await _unitOfWork.EquipoRepository.GetByIdAsync(idEquipo);
             Objeto objeto = await _unitOfWork.ObjetoRepository.GetByIdAsync(idObjeto);
@@ -88,6 +88,32 @@ namespace Services.Services
 
             if (objeto == null)
                 throw new ArgumentException("ID de Objeto Invalido");
+
+            switch(type)
+            {
+                case "casco":
+                    equipoToBeUpdated.casco = idObjeto.ToString();
+                    break;
+                case "armadura":
+                    equipoToBeUpdated.armadura = idObjeto.ToString();
+                    break;
+                case "arma1":
+                    equipoToBeUpdated.arma1 = idObjeto.ToString();
+                    break;
+                case "arma2":
+                    equipoToBeUpdated.arma2 = idObjeto.ToString();
+                    break;
+                case "guanteletes":
+                    equipoToBeUpdated.guanteletes = idObjeto.ToString();
+                    break;
+                case "grebas":
+                    equipoToBeUpdated.grebas = idObjeto.ToString();
+                    break;
+                default:
+                    throw new ArgumentException("Tipo de Objeto Invalido");
+            }
+
+            await _unitOfWork.CommitAsync();
 
             return equipoToBeUpdated;
         }
@@ -95,14 +121,35 @@ namespace Services.Services
         public async Task<Equipo> DesequiparObjeto(int idObjeto, int idEquipo)
         {
             Equipo equipoToBeUpdated = await _unitOfWork.EquipoRepository.GetByIdAsync(idEquipo);
-            Objeto objeto = await _unitOfWork.ObjetoRepository.GetByIdAsync(idObjeto);
 
             if (equipoToBeUpdated == null)
                 throw new ArgumentException("Invalid Equipo ID while updating");
 
-            if (objeto == null)
-                throw new ArgumentException("ID de Objeto Invalido");
+            switch(true)
+            {
+                case true when equipoToBeUpdated.casco == idObjeto.ToString():
+                    equipoToBeUpdated.casco = "Empty";
+                    break;
+                case true when equipoToBeUpdated.armadura == idObjeto.ToString():
+                    equipoToBeUpdated.armadura = "Empty";
+                    break;
+                case true when equipoToBeUpdated.arma1 == idObjeto.ToString():
+                    equipoToBeUpdated.arma1 = "Empty";
+                    break;
+                case true when equipoToBeUpdated.arma2 == idObjeto.ToString():
+                    equipoToBeUpdated.arma2 = "Empty";
+                    break;
+                case true when equipoToBeUpdated.guanteletes == idObjeto.ToString():
+                    equipoToBeUpdated.guanteletes = "Empty";
+                    break;
+                case true when equipoToBeUpdated.grebas == idObjeto.ToString():
+                    equipoToBeUpdated.grebas = "Empty";
+                    break;
+                default:
+                    throw new ArgumentException("ID Objeto Invalido");
+            }
 
+            await _unitOfWork.CommitAsync();
             return equipoToBeUpdated;
         }
     }

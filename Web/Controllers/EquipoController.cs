@@ -69,5 +69,33 @@ namespace Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("Equipar/{idEquipo}/{idObjeto}/{type}")]
+        public async Task<ActionResult<Equipo>> Equipar(int idEquipo, int idObjeto, string type)
+        {
+            try
+            {
+                await _servicio.EquiparObjeto(idObjeto, idEquipo, type);
+                return Ok("Objeto Equipado!!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("Desequipar/{idEquipo}/{idObjeto}")]
+        public async Task<ActionResult<Equipo>> Desequipar(int idEquipo, int idObjeto)
+        {
+            try
+            {
+                await _servicio.DesequiparObjeto(idObjeto, idEquipo);
+                return Ok("Objeto Desequipado!!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
