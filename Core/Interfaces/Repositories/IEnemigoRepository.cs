@@ -8,6 +8,5 @@ namespace Core.Interfaces.Repositories
 {
     public interface IEnemigoRepository : IBaseRepository<Enemigo>
     {
-        
     }
 }

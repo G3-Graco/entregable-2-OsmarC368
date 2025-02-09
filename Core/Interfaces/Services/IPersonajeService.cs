@@ -14,6 +14,5 @@ namespace Core.Services
         Task<AtaqueResponse> Atacar(int idEnemigo, int idPersonaje);
         Task<Personaje> AprenderHabilidad(int personajeToBeUpdatedId, int idHabilidad);
 
-
     }
 }

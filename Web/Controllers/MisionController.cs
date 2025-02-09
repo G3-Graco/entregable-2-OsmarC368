@@ -69,5 +69,47 @@ namespace Web.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpPut("AceptarMision/{idMision}/{idPersonaje}")]
+        public async Task<ActionResult<Mision>> AceptarMision(int idMision, int idPersonaje)
+        {
+            try
+            {
+                await _servicio.AceptarMision(idMision, idPersonaje);
+                return Ok("Mision Aceptada");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpGet("Progreso/{idMision}")]
+        public async Task<ActionResult<float>> Progreso(int idMision)
+        {
+            try
+            {
+                var x = await _servicio.Progreso(idMision);
+                return Ok($"Progreso: {x}%");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPut("CompletarMision/{idMision}/{idPersonaje}/{idEquipo}")]
+        public async Task<ActionResult<Mision>> CompletarMision(int idMision, int idPersonaje)
+        {
+            try
+            {
+                var x = await _servicio.AceptarMision(idMision, idPersonaje);
+                return Ok($"Mision Completada!!!!!\nRecompensas: {x}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

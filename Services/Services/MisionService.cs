@@ -77,5 +77,53 @@ namespace Services.Services
             return await _unitOfWork.MisionRepository.GetByIdAsync(idMision);
         }
 
+        public async Task<Mision> AceptarMision(int idMision, int idPersonaje)
+        {
+            Mision misionToBeUpdated = await _unitOfWork.MisionRepository.GetByIdAsync(idMision);
+            Personaje personaje = await _unitOfWork.PersonajeRepository.GetByIdAsync(idPersonaje);
+
+            if (misionToBeUpdated == null)
+                throw new ArgumentException("ID de la Mision Invalido");
+
+            if (personaje == null)
+                throw new ArgumentException("ID de Personaje Invalido");
+
+            misionToBeUpdated.estado = 'p';
+
+            await _unitOfWork.CommitAsync();
+
+            return misionToBeUpdated;
+        }
+
+        public async Task<float> Progreso(int idMision)
+        {
+            Mision mision = await _unitOfWork.MisionRepository.GetByIdAsync(idMision);
+            
+            if (mision == null)
+                throw new ArgumentException("ID de la Mision Invalido");
+
+            var progreso = mision.objetivos.Where(x => x.Split("-")[1] == "terminada").ToList().Count / mision.objetivos.Count * 100;
+
+            return progreso;
+        }
+
+        public async Task<IEnumerable<string>> CompletarMision(int idMision, int idPersonaje)
+        {
+            Mision misionToBeUpdated = await _unitOfWork.MisionRepository.GetByIdAsync(idMision);
+            Personaje personaje = await _unitOfWork.PersonajeRepository.GetByIdAsync(idPersonaje);
+
+            if (misionToBeUpdated == null)
+                throw new ArgumentException("ID de la Mision Invalido");
+
+            if (personaje == null)
+                throw new ArgumentException("ID de Personaje Invalido");
+
+            misionToBeUpdated.estado = 'p';
+
+            await _unitOfWork.CommitAsync();
+
+            return misionToBeUpdated.recompensas;
+        }
+
     }
 }
