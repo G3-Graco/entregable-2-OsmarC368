@@ -10,30 +10,30 @@ namespace Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EquipoController : ControllerBase
+    public class ObjetoController : ControllerBase
     {
-        private IEquipoService _servicio;
+        private IObjetoService _servicio;
 
-        public EquipoController(IEquipoService equipoService)
+        public ObjetoController(IObjetoService objetoService)
         {
-            _servicio = equipoService;
+            _servicio = objetoService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Equipo>>> Get()
+        public async Task<ActionResult<IEnumerable<Objeto>>> Get()
         {
-            var equipos = await _servicio.GetAll();
+            var objetos = await _servicio.GetAll();
 
-            return Ok(equipos);
+            return Ok(objetos);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Equipo>> Post([FromBody] Equipo equipo)
+        public async Task<ActionResult<Objeto>> Post([FromBody] Objeto objeto)
         {
             try
             {
-                var createdEquipo = await _servicio.Create(equipo);
-                return Ok(createdEquipo);
+                var createdObjeto = await _servicio.Create(objeto);
+                return Ok(createdObjeto);
             }
             catch (Exception ex)
             {
@@ -42,12 +42,12 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Equipo>> Delete(int id)
+        public async Task<ActionResult<Objeto>> Delete(int id)
         {
             try
             {
                 await _servicio.Delete(id);
-                return Ok("Equipo eliminado");
+                return Ok("Objeto eliminado");
 
             }
             catch (Exception ex)
@@ -57,12 +57,12 @@ namespace Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Equipo>> Update(int id, [FromBody] Equipo equipo)
+        public async Task<ActionResult<Objeto>> Update(int id, [FromBody] Objeto objeto)
         {
             try
             {
-                await _servicio.Update(id, equipo);
-                return Ok("Equipo Actualizado!!");
+                await _servicio.Update(id, objeto);
+                return Ok("Objeto Actualizado!!");
             }
             catch (Exception ex)
             {

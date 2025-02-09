@@ -77,5 +77,33 @@ namespace Services.Services
 
             return await _unitOfWork.EquipoRepository.GetByIdAsync(idEquipo);
         }
+
+        public async Task<Equipo> EquiparObjeto(int idObjeto, int idEquipo)
+        {
+            Equipo equipoToBeUpdated = await _unitOfWork.EquipoRepository.GetByIdAsync(idEquipo);
+            Objeto objeto = await _unitOfWork.ObjetoRepository.GetByIdAsync(idObjeto);
+
+            if (equipoToBeUpdated == null)
+                throw new ArgumentException("Invalid Equipo ID while updating");
+
+            if (objeto == null)
+                throw new ArgumentException("ID de Objeto Invalido");
+
+            return equipoToBeUpdated;
+        }
+
+        public async Task<Equipo> DesequiparObjeto(int idObjeto, int idEquipo)
+        {
+            Equipo equipoToBeUpdated = await _unitOfWork.EquipoRepository.GetByIdAsync(idEquipo);
+            Objeto objeto = await _unitOfWork.ObjetoRepository.GetByIdAsync(idObjeto);
+
+            if (equipoToBeUpdated == null)
+                throw new ArgumentException("Invalid Equipo ID while updating");
+
+            if (objeto == null)
+                throw new ArgumentException("ID de Objeto Invalido");
+
+            return equipoToBeUpdated;
+        }
     }
 }
